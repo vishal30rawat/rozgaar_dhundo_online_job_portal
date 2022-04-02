@@ -2,9 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Rozgaar Dhundo: Jobs</title>
 </head>
 <body>
+
+<div class="common_header" >
+        <a href="{% url 'home_page' %}" >Home</a>
+
+    {% if user %}
+
+            <a href="{% url 'joblist' %}" >Jobs</a>
+
+            <a href="{% url 'applicationlist' %}" >Applied</a>
+
+            <a href="{% url 'savelist' %}" >Saved</a>
+
+            <a href="{% url 'logout' %}" >Log Out</a>
+
+            <a href="{% url 'profile' %}" >
+                {% if user.profile_picture %}
+                    <img style="border-radius: 35px;" src="{{user.profile_picture.url}}" height="60px" width="60px"/>
+                {% else %}
+                    <img style="border-radius: 35px;" src="/media/blank_profile.PNG" height="60px" width="60px"/>
+                {% endif %}
+            </a>
+
+    {% else %}
+                <a href="{% url 'signin' %}" >Sign In</a>
+                <a href="{% url 'signup' %}" >Sign Up</a>
+
+    {% endif %}
+</div>
+<!--header ends here-->
+
+{% block content %}
+{% endblock %}
+
+<!--<div class="common_footer" style="background-color: red;position: fixed;left: 0;bottom: 0;width: 100%;color: white;text-align: center;">Footer</div>-->
 
 </body>
 </html>

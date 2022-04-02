@@ -1,13 +1,8 @@
+{% extends 'api/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div class="user_profile">
+{% block content %}
+    <div class="user_profile" align="center">
         <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %}
             First Name  <input type="text" name="first_name" value="{{user.first_name}}"><br>
             Last Name  <input type="text" name="last_name" value="{{user.last_name}}"><br>
@@ -48,5 +43,4 @@
         <input type="submit" name="update" value="update">
         </form>
     </div>
-</body>
-</html>
+{% endblock %}
