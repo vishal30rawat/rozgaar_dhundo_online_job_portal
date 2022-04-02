@@ -143,5 +143,4 @@ MEDIA_URL = '/media/'
 
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'api.CustomUser'
-PAGINATE_BY = os.getenv('PAGINATE_BY')
 LOGIN_URL = "/login/"

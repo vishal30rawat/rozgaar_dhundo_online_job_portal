@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+    <h3 align="center">Profile</h3>
     <div class="user_profile" align="center">
         <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %}
             First Name  <input type="text" name="first_name" value="{{user.first_name}}"><br>

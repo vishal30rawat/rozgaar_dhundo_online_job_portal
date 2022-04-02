@@ -1,39 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1 align="center"> Job List</h1>
-<form class="search_job" method="GET" action="">
+{% extends 'api/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1 align="center"> Jobs</h1>
+<div class="search_job" style="position: absolute;top: 150px; right:40px;">
+    <h3>Search & Filter Jobs</h3>
+    <form  method="GET" action="" >
     Is Remote Job:  <input type="radio" id="remote_true" name="is_remote" value="true">True
-    <input type="radio" id="remote_false" name="is_remote" value="false">False <br>
+    <input type="radio" id="remote_false" name="is_remote" value="false">False <br><br>
 
     skills: <select name="skill" multiple>
     {% for skill in skills %}
         <option value="{{skill.id}}">{{skill.name}}</option>
     {% endfor %}
-    </select>
+    </select><br><br>
 
-    Cities: <select name="city" multiple>
+    Cities: <select name="city" multiple style="width:150px;">
     {% for city in cities %}
         <option value="{{city.id}}">{{city.name}}</option>
     {% endfor %}
-    </select>
-    Companies: <select name="company" multiple>
+    </select><br><br>
+    Companies: <select name="company" multiple style="width:150px;">
     {% for company in companies %}
         <option value="{{company.id}}">{{company.name}}</option>
     {% endfor %}
     </select>
-    <br>
-    posted date from: <input type="date" name="from_date">
-    posted date to: <input type="date" name="to_date"> <br>
-    <input type="search" name="search">
+    <br><br>
+    posted date from: <input type="date" name="from_date"><br><br>
+    posted date to: <input type="date" name="to_date"> <br><br>
+    Search <input type="search" name="search" placeholder="Job title/company name"><br><br>
     <input type="submit">
+
 </form>
+</div>
+
 {% if job_posts %}
-<table border="solid">
+<div class="jobs table" style="position:absolute;width:1000px; height:100%;">
+<table width="100%" border="solid">
     <th>Title</th>
     <th>Company</th>
     <th>Company Logo</th>
@@ -48,8 +52,184 @@
             <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
         </tr>
     {% endfor %}
+
+
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
 </table>
-{% endif %}
+ {% endif %}
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
@@ -67,5 +247,6 @@
         {% endif %}
     </span>
 </div>
-</body>
-</html>
+</div>
+
+    {% endblock %}
