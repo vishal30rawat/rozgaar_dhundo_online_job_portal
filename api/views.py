@@ -13,7 +13,6 @@ from api.models import JobPost, CustomUser, Skill, City, Company, JobApplication
 from strings import *
 
 
-# todo manage strings in strings.py
 class HomepageView(TemplateView):
     template_name = 'api/home_page.html'
 
@@ -68,6 +67,14 @@ class CandidateProfileView(LoginRequiredMixin, TemplateView):
 class CandidateSignUpView(TemplateView):
     template_name = 'api/sign_up.html'
 
+    def get_context_data(self, **kwargs):
+        context_data = super(CandidateSignUpView, self).get_context_data(**kwargs)
+        user = self.request.user
+        if not self.request.user.is_authenticated:
+            user = None
+        context_data.update({'user': user})
+        return context_data
+
     @transaction.atomic
     def post(self, request):
         try:
@@ -92,6 +99,14 @@ class CandidateSignUpView(TemplateView):
 
 class CandidateSignInView(TemplateView):
     template_name = 'api/sign_in.html'
+
+    def get_context_data(self, **kwargs):
+        context_data = super(CandidateSignInView, self).get_context_data(**kwargs)
+        user = self.request.user
+        if not self.request.user.is_authenticated:
+            user = None
+        context_data.update({'user': user})
+        return context_data
 
     def post(self, request):
         user = authenticate(
@@ -159,8 +174,17 @@ class JobPostListView(LoginRequiredMixin, ListView):
             qs = qs.filter(company_id__in=companies)
         if search:
             qs = qs.filter(Q(title__icontains=search) |
+                           Q(company__name__icontains=search) |
                            Q(description__icontains=search))
         return qs.distinct()
+
+    def get_context_data(self, **kwargs):
+        context_data = super(JobPostListView, self).get_context_data(**kwargs)
+        user = self.request.user
+        if not self.request.user.is_authenticated:
+            user = None
+        context_data.update({'user': user})
+        return context_data
 
 
 class JobPostDetailView(LoginRequiredMixin, DetailView):
@@ -178,6 +202,14 @@ class JobPostDetailView(LoginRequiredMixin, DetailView):
             is_saved=Exists(SavedJob.objects.filter(job_post_id=OuterRef('id'),
                                                     applicant_id=self.request.user.id)))
         return qs
+
+    def get_context_data(self, **kwargs):
+        context_data = super(JobPostDetailView, self).get_context_data(**kwargs)
+        user = self.request.user
+        if not self.request.user.is_authenticated:
+            user = None
+        context_data.update({'user': user})
+        return context_data
 
 
 class JobApplicationListView(LoginRequiredMixin, ListView):
@@ -230,6 +262,14 @@ class JobApplicationListView(LoginRequiredMixin, ListView):
                                                        applicant_id=self.request.user.id).values('status')[:1]
         qs = qs.annotate(applied_on=Subquery(applied_on), applied_status=Subquery(applied_status))
         return qs.distinct()
+
+    def get_context_data(self, **kwargs):
+        context_data = super(JobApplicationListView, self).get_context_data(**kwargs)
+        user = self.request.user
+        if not self.request.user.is_authenticated:
+            user = None
+        context_data.update({'user': user})
+        return context_data
 
     @transaction.atomic
     def post(self, request):
@@ -290,6 +330,14 @@ class JobSaveListView(LoginRequiredMixin, ListView):
                                            applicant_id=self.request.user.id).values('created_at')[:1]
         qs = qs.annotate(saved_on=Subquery(saved_on))
         return qs.distinct()
+
+    def get_context_data(self, **kwargs):
+        context_data = super(JobSaveListView, self).get_context_data(**kwargs)
+        user = self.request.user
+        if not self.request.user.is_authenticated:
+            user = None
+        context_data.update({'user': user})
+        return context_data
 
     @transaction.atomic
     def post(self, request):

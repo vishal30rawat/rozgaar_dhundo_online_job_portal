@@ -5,33 +5,33 @@
     <title>Rozgaar Dhundo: Jobs</title>
 </head>
 
-<body>
+<body bgcolor="#99ffbb">
 
 
-<div class="common_header" >
-        <a href="{% url 'home_page' %}" >Home</a>
+<div class="common_header" style="position:absolute;top:20px;right:100px;">
+        <a href="{% url 'home_page' %}" >Home</a>&nbsp;
 
     {% if user %}
 
-            <a href="{% url 'joblist' %}" >Jobs</a>
+            <a style="width:15px;" href="{% url 'joblist' %}" >Jobs</a> &nbsp;
 
-            <a href="{% url 'applicationlist' %}" >Applied</a>
+            <a href="{% url 'applicationlist' %}" >Applied</a>&nbsp;
 
-            <a href="{% url 'savelist' %}" >Saved</a>
+            <a href="{% url 'savelist' %}" >Saved</a>&nbsp;
 
-            <a href="{% url 'logout' %}" >Log Out</a>
+            <a href="{% url 'logout' %}" >Log Out</a>&nbsp; &nbsp;
 
-            <a href="{% url 'profile' %}" >
+            <a href="{% url 'profile' %}" style="position:absolute;top:-10px;" >
                 {% if user.profile_picture %}
-                    <img style="border-radius: 35px;" src="{{user.profile_picture.url}}" height="60px" width="60px"/>
+                    <img style="border-radius: 35px;" src="{{user.profile_picture.url}}" height="35px" width="35px"/>
                 {% else %}
-                    <img style="border-radius: 35px;" src="/media/blank_profile.PNG" height="60px" width="60px"/>
+                    <img style="border-radius: 35px;" src="/media/blank_profile.PNG" height="35px" width="35px"/>
                 {% endif %}
             </a>
 
     {% else %}
-                <a href="{% url 'signin' %}" >Sign In</a>
-                <a href="{% url 'signup' %}" >Sign Up</a>
+                <a href="{% url 'signin' %}" >Sign In</a> &nbsp;
+                <a href="{% url 'signup' %}" >Sign Up</a> &nbsp;
 
     {% endif %}
 </div>

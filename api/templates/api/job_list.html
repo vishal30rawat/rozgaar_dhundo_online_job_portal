@@ -4,7 +4,7 @@
 {% block content %}
 
 <h1 align="center"> Jobs</h1>
-<div class="search_job" style="position: absolute;top: 150px; right:40px;">
+<div class="search_job" style="position: absolute;top: 150px; right:40px; background:pink; width:400px; padding: 20px 10px;text-align:center;height:500px;">
     <h3>Search & Filter Jobs</h3>
     <form  method="GET" action="" >
     Is Remote Job:  <input type="radio" id="remote_true" name="is_remote" value="true">True
@@ -36,201 +36,27 @@
 </div>
 
 {% if job_posts %}
-<div class="jobs table" style="position:absolute;width:1000px; height:100%;">
-<table width="100%" border="solid">
-    <th>Title</th>
-    <th>Company</th>
-    <th>Company Logo</th>
-    <th>Can be remote</th>
-    <th> View More</th>
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
+<div class="jobs table" style="position:absolute;width:1000px; height:1000px;top:110px;right:530px;">
 
+    <table width="100%" border="solid" style="text-align:center;margin:50px 50px;">
+        <th>Title</th>
+        <th>Company</th>
+        <th>Company Logo</th>
+        <th>Can be remote</th>
+        <th> View More</th>
+        {% for job_post in job_posts %}
+            <tr>
+                <td>{{job_post.title}}</td>
+                <td>{{job_post.company.name}}</td>
+                <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="50px" height="30px"></td>
+                <td>{{job_post.can_be_remote}}</td>
+                <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+            </tr>
+        {% endfor %}
+    </table>
 
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-
-    {% for job_post in job_posts %}
-        <tr>
-            <td>{{job_post.title}}</td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
-        </tr>
-    {% endfor %}
-</table>
- {% endif %}
-<div class="pagination">
+{% endif %}
+<div class="pagination" style="text-align:center;font-weight:bold;font-size:25px; top:500px; right:370px; position:absolute;">
     <span class="step-links">
         {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>

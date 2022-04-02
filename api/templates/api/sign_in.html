@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div class="sign_in_div">
+{% extends 'api/base.html' %}
+
+{% block content %}
+
+    <div class="sign_in_div">
 
     {% if message %}
         {{message}}
     {% endif %}
-    <form class="sign_in_form" method="post" action="{% url 'signin' %}"> {% csrf_token %}
-        <div>Email <input type="email" name="email" placeholder="email"></div>
-        <div>Password<input type="password" name="password" placeholder="Password"></div>
-        <div><button type="submit">Sign In</button></div>
-        <div><button type="reset">Reset</button></div>
-    </form>
 
-    <div class="signup_link">
-    <a href="{% url 'signup' %}" >Create New Account</a>
+        <div style="text-align:center; position:absolute;top:200px;right:600px;  background-color: coral;height:100px;padding-top:150px; width:400px;border-radius:25px;">
+        <form class="sign_in_form" method="post" action="{% url 'signin' %}" > {% csrf_token %}
+            <div style="padding-top:10px;position:relative;bottom:100px;">Email &nbsp;&nbsp; <input type="email" name="email" placeholder="email" required></div>
+            <div style="padding-top:10px;position:relative;bottom:70px;">Password &nbsp;&nbsp;<input type="password" name="password" placeholder="Password" required></div>
+            <div style="padding-top:5px;position:relative;bottom:30px;">
+                <button style="width:90px; border-radius:20px;" type="submit">Sign In</button>&nbsp;&nbsp;&nbsp;
+                <button style="width:90px; border-radius:20px;" type="reset">Reset</button>
+            </div>
+        </form>
+        </div>
 
 </div>
-</div>
-</body>
-</html>
+{% endblock %}
