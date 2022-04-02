@@ -82,7 +82,7 @@ class CustomUser(AbstractUser):
 
 
 class Skill(BaseModel):
-    name = models.CharField(max_length=250, unique=True,
+    name = models.CharField(max_length=250, unique=True, db_index=True,
                             error_messages={"unique": SKILL_EXISTS})
 
     def __str__(self):
@@ -95,7 +95,7 @@ class Skill(BaseModel):
 
 
 class City(BaseModel):
-    name = models.CharField(max_length=250, unique=True,
+    name = models.CharField(max_length=250, unique=True, db_index=True,
                             error_messages={"unique": CITY_EXISTS})
 
     def __str__(self):
@@ -108,7 +108,7 @@ class City(BaseModel):
 
 
 class Company(BaseModel):
-    name = models.CharField(max_length=250, unique=True,
+    name = models.CharField(max_length=250, unique=True, db_index=True,
                             error_messages={"unique": COMPANY_EXISTS})
     email = models.EmailField()
     mobile_number = models.CharField(max_length=10)
@@ -126,7 +126,7 @@ class Company(BaseModel):
 
 
 class JobPost(BaseModel):
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250, db_index=True)
     description = models.TextField()
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='companies_jobs')
     total_vacancies = models.PositiveIntegerField(default=1)
@@ -134,7 +134,7 @@ class JobPost(BaseModel):
     payroll_method = models.CharField(max_length=1, choices=[i.value for i in PayRollChoice])
     pay_range_from = models.DecimalField(decimal_places=2, max_digits=10)
     pay_range_to = models.DecimalField(decimal_places=2, max_digits=10)
-    can_be_remote = models.BooleanField(default=True)
+    can_be_remote = models.BooleanField(default=True, db_index=True)
     skills = models.ManyToManyField(Skill, blank=True)
     cities = models.ManyToManyField(City, blank=True)
 
@@ -151,7 +151,7 @@ class JobApplication(BaseModel):
     applicant = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, related_name='job_applications')
     status = models.CharField(max_length=3, choices=[i.value for i in JobApplicationStatus],
-                              default=JobApplicationStatus.candidate_applied.value[0])
+                              default=JobApplicationStatus.candidate_applied.value[0], db_index=True)
 
     def __str__(self):
         return f'{self.applicant.email}-({self.job_post.title})'
