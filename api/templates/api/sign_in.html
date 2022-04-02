@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="sign_in_div">
+
+    {% if message %}
+        {{message}}
+    {% endif %}
+    <form class="sign_in_form" method="post" action="{% url 'signin' %}"> {% csrf_token %}
+        <div>Email <input type="email" name="email" placeholder="email"></div>
+        <div>Password<input type="password" name="password" placeholder="Password"></div>
+        <div><button type="submit">Sign In</button></div>
+        <div><button type="reset">Reset</button></div>
+    </form>
+
+    <div class="signup_link">
+    <a href="{% url 'signup' %}" >Create New Account</a>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="job_detail">
+    {{job_post.title}}<br>
+    {{job_post.company.name}}<br>
+    <img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" height="20px" width="40px"><br>
+    {{job_post.description}}<br>
+
+    {% if job_post.is_applied %}
+        <form method="POST" action="{% url 'applicationlist' %}"> {% csrf_token %}
+                    Already Applied
+        <input type="text" name="job_post" value="{{job_post.id}}" hidden>
+        <input type="text" name="is_applying" value="False" hidden>
+        <input type="submit" value="Un-Apply Now" >
+        </form>
+    {% else %}
+
+        <form method="POST" action="{% url 'applicationlist' %}"> {% csrf_token %}
+        <input type="text" name="is_applying" value="True" hidden>
+        <input type="text" name="job_post" value="{{job_post.id}}" hidden>
+        <input type="submit" value="Apply Now" >
+        </form>
+
+    {% endif %}
+
+    {% if job_post.is_saved %}
+        <form method="POST" action="{% url 'savelist' %}"> {% csrf_token %}
+                        Already Saved
+            <input type="text" name="job_post" value="{{job_post.id}}" hidden>
+            <input type="text" name="is_saving" value="False" hidden>
+            <input type="submit" value="Un-Save Now" >
+        </form>
+    {% else %}
+        <form method="POST" action="{% url 'savelist' %}"> {% csrf_token %}
+            <input type="text" name="is_saving" value="True" hidden>
+            <input type="text" name="job_post" value="{{job_post.id}}" hidden>
+            <input type="submit" value="Save For Now" >
+        </form>
+    {% endif %}
+</div>
+</body>
+</html>

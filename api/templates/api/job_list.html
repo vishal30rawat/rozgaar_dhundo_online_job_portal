@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 align="center"> Job List</h1>
+<form class="search_job" method="GET" action="">
+    Is Remote Job:  <input type="radio" id="remote_true" name="is_remote" value="true">True
+    <input type="radio" id="remote_false" name="is_remote" value="false">False <br>
+
+    skills: <select name="skill" multiple>
+    {% for skill in skills %}
+        <option value="{{skill.id}}">{{skill.name}}</option>
+    {% endfor %}
+    </select>
+
+    Cities: <select name="city" multiple>
+    {% for city in cities %}
+        <option value="{{city.id}}">{{city.name}}</option>
+    {% endfor %}
+    </select>
+    Companies: <select name="company" multiple>
+    {% for company in companies %}
+        <option value="{{company.id}}">{{company.name}}</option>
+    {% endfor %}
+    </select>
+    <br>
+    posted date from: <input type="date" name="from_date">
+    posted date to: <input type="date" name="to_date"> <br>
+    <input type="search" name="search">
+    <input type="submit">
+</form>
+{% if job_posts %}
+<table border="solid">
+    <th>Title</th>
+    <th>Company</th>
+    <th>Company Logo</th>
+    <th>Can be remote</th>
+    <th> View More</th>
+    {% for job_post in job_posts %}
+        <tr>
+            <td>{{job_post.title}}</td>
+            <td>{{job_post.company.name}}</td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
+            <td>{{job_post.can_be_remote}}</td>
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

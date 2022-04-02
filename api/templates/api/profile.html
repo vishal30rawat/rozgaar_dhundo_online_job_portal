@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="user_profile">
+        <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %}
+            First Name  <input type="text" name="first_name" value="{{user.first_name}}"><br>
+            Last Name  <input type="text" name="last_name" value="{{user.last_name}}"><br>
+            Mobile:<input type="number" name="mobile_number" minlength="10" maxlength="10" value="{{user.mobile_number}}"><br>
+            Resume:<input type="file" name="resume" accept=".pdf,.doc">
+            {% if user.resume %}
+            <a href="{{user.resume.url}}" target="_blank">View Resume</a>
+            {% else %}
+                <img src="/media/blank_resume.PNG" height="50px" width="50px"/>
+            {% endif %}
+            <br>
+
+            Profile Pic:<input type="file" name="profile_picture" accept=".png,.jpeg,.jpg" >
+            {% if user.profile_picture %}
+                <img src="{{user.profile_picture.url}}" height="50px" width="50px"/>
+            {% else %}
+                <img src="/media/blank_profile.PNG" height="50px" width="50px"/>
+            {% endif %}
+            <br>
+
+            can work remotely :
+            <input type="radio" name="can_work_remotely" value="true" {% if user.can_work_remotely  %} checked="checked" {% endif %}> Yes
+            <input type="radio" name="can_work_remotely" value="false" {% if not user.can_work_remotely  %} checked="checked" {% endif %}> No <br>
+
+            preferred_locations:
+            <select multiple name="location">
+                {% for city in cities %}
+                    <option value="{{city.id}}" {% if city.is_added %} selected {% endif %} >{{city.name}} </option>
+                {% endfor %}
+            </select>
+
+            preferred skills:
+            <select multiple name="skill">
+                {% for skill in skills %}
+                    <option value="{{skill.id}}" {% if skill.is_added %} selected {% endif %} >{{skill.name}}</option>
+                {% endfor %}
+            </select>
+        <input type="submit" name="update" value="update">
+        </form>
+    </div>
+</body>
+</html>

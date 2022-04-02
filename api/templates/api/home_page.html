@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 align="center">Roazgaar Dhundo: Job Portal </h1>
+
+<div class="login_link">
+    <a href="{% url 'signin' %}" >Sign In</a>
+</div>
+<div class="signup_link">
+    <a href="{% url 'signup' %}" >Sign Up</a>
+</div>
+{% if user %}
+<div class="logout_link">
+    <a href="{% url 'logout' %}" >Log Out</a>
+</div>
+{% endif %}
+</body>
+</html>
