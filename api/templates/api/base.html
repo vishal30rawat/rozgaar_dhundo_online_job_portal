@@ -9,19 +9,19 @@
 
 
 <div class="common_header" style="position:absolute;top:20px;right:100px;">
-        <a href="{% url 'home_page' %}" >Home</a>&nbsp;
+        <a href="{% url 'home_page' %}" style="text-decoration:none;">Home</a>&nbsp;
 
     {% if user %}
 
-            <a style="width:15px;" href="{% url 'joblist' %}" >Jobs</a> &nbsp;
+            <a style="width:15px;text-decoration:none;" href="{% url 'joblist' %}" >Jobs</a> &nbsp;
 
-            <a href="{% url 'applicationlist' %}" >Applied</a>&nbsp;
+            <a style="text-decoration:none;" href="{% url 'applicationlist' %}" >Applied</a>&nbsp;
 
-            <a href="{% url 'savelist' %}" >Saved</a>&nbsp;
+            <a style="text-decoration:none;" href="{% url 'savelist' %}" >Saved</a>&nbsp;
 
-            <a href="{% url 'logout' %}" >Log Out</a>&nbsp; &nbsp;
+            <a style="text-decoration:none;" href="{% url 'logout' %}" >Log Out</a>&nbsp; &nbsp;
 
-            <a href="{% url 'profile' %}" style="position:absolute;top:-10px;" >
+            <a href="{% url 'profile' %}" style="position:absolute;top:-10px;text-decoration:none;" >
                 {% if user.profile_picture %}
                     <img style="border-radius: 35px;" src="{{user.profile_picture.url}}" height="35px" width="35px"/>
                 {% else %}
@@ -30,8 +30,8 @@
             </a>
 
     {% else %}
-                <a href="{% url 'signin' %}" >Sign In</a> &nbsp;
-                <a href="{% url 'signup' %}" >Sign Up</a> &nbsp;
+                <a style="text-decoration:none;" href="{% url 'signin' %}" >Sign In</a> &nbsp;
+                <a style="text-decoration:none;" href="{% url 'signup' %}" >Sign Up</a> &nbsp;
 
     {% endif %}
 </div>

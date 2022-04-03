@@ -255,7 +255,9 @@ class JobApplicationListView(LoginRequiredMixin, ListView):
             qs = qs.filter(company_id__in=companies)
         if search:
             qs = qs.filter(Q(title__icontains=search) |
+                           Q(company__name__icontains=search) |
                            Q(description__icontains=search))
+
         applied_on = JobApplication.objects.filter(job_post_id=OuterRef('id'),
                                                    applicant_id=self.request.user.id).values('created_at')[:1]
         applied_status = JobApplication.objects.filter(job_post_id=OuterRef('id'),
@@ -325,7 +327,9 @@ class JobSaveListView(LoginRequiredMixin, ListView):
             qs = qs.filter(company_id__in=companies)
         if search:
             qs = qs.filter(Q(title__icontains=search) |
+                           Q(company__name__icontains=search) |
                            Q(description__icontains=search))
+
         saved_on = SavedJob.objects.filter(job_post_id=OuterRef('id'),
                                            applicant_id=self.request.user.id).values('created_at')[:1]
         qs = qs.annotate(saved_on=Subquery(saved_on))

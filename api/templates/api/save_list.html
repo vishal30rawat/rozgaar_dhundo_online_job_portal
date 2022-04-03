@@ -1,39 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1 align="center"> Job Save List</h1>
+{% extends 'api/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1 align="center"> Saved Jobs</h1>
+<div class="search_job" style="position: absolute;top: 85px; right:50px; background:pink; width:1410px; padding: 20px 10px;height:170px;">
+    <h2 style="text-align:center;">Search & Filter Jobs</h2>
 <form class="search_job" method="GET" action="">
     Is Remote Job:  <input type="radio" id="remote_true" name="is_remote" value="true">True
-    <input type="radio" id="remote_false" name="is_remote" value="false">False <br>
+    <input type="radio" id="remote_false" name="is_remote" value="false">False
 
-    skills: <select name="skill" multiple>
+    <select style="position:relative;top:30px;" name="skill" multiple>
     {% for skill in skills %}
         <option value="{{skill.id}}">{{skill.name}}</option>
     {% endfor %}
     </select>
 
-    Cities: <select name="city" multiple>
+    <select style="position:relative;top:30px;" name="city" multiple>
     {% for city in cities %}
         <option value="{{city.id}}">{{city.name}}</option>
     {% endfor %}
     </select>
-    Companies: <select name="company" multiple>
+     <select style="position:relative;top:30px;" name="company" multiple>
     {% for company in companies %}
         <option value="{{company.id}}">{{company.name}}</option>
     {% endfor %}
     </select>
-    <br>
-    save date from: <input type="date" name="from_date">
-    save date to: <input type="date" name="to_date"> <br>
-    <input type="search" name="search">
+
+    saved date from: <input type="date" name="from_date">
+    saved date to: <input type="date" name="to_date">
+    Search <input type="search" name="search" placeholder="Job title/company name">
     <input type="submit">
 </form>
+</div>
+
 {% if job_posts %}
-<table border="solid">
+<div class="jobs table" style="position:absolute;width:95%; height:1000px;top:250px;right:90px;">
+<table width="100%" style="border: 2px solid black;text-align:center;margin:50px 50px;">
     <th>Saved on</th>
     <th>Title</th>
     <th>Company</th>
@@ -43,16 +45,17 @@
     {% for job_post in job_posts %}
         <tr>
             <td>{{job_post.saved_on}}</td>
-            <td>{{job_post.title}}</td>
+            <td><strong>{{job_post.title}}</strong></td>
             <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="40px" height="20px"></td>
-            <td>{{job_post.can_be_remote}}</td>
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="50px" height="30px"></td>
+            <td>{% if job_post.can_be_remote %} Yes {% else %} No {% endif %}</td>
+
+            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail" style="text-decoration:none;">View Details</a></td>
         </tr>
     {% endfor %}
 </table>
 {% endif %}
-<div class="pagination">
+<div class="pagination" style="text-align:center;font-weight:bold;font-size:25px; top:460px; right:570px; position:absolute;">
     <span class="step-links">
         {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>
@@ -69,5 +72,5 @@
         {% endif %}
     </span>
 </div>
-</body>
-</html>
+</div>
+{% endblock %}

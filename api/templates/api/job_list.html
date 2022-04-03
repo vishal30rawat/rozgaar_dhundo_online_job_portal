@@ -4,59 +4,61 @@
 {% block content %}
 
 <h1 align="center"> Jobs</h1>
-<div class="search_job" style="position: absolute;top: 150px; right:40px; background:pink; width:400px; padding: 20px 10px;text-align:center;height:500px;">
-    <h3>Search & Filter Jobs</h3>
+<div class="search_job" style="position: absolute;top: 85px; right:50px; background:pink; width:1410px; padding: 20px 10px;height:170px;">
+    <h2 style="text-align:center;">Search & Filter Jobs</h2>
     <form  method="GET" action="" >
-    Is Remote Job:  <input type="radio" id="remote_true" name="is_remote" value="true">True
-    <input type="radio" id="remote_false" name="is_remote" value="false">False <br><br>
 
-    skills: <select name="skill" multiple>
+        Is Remote Job:  <input type="radio" id="remote_true" name="is_remote" value="true">True
+    <input type="radio" id="remote_false" name="is_remote" value="false">False
+
+    <select style="position:relative;top:30px;" name="skill" multiple>
     {% for skill in skills %}
         <option value="{{skill.id}}">{{skill.name}}</option>
     {% endfor %}
-    </select><br><br>
+    </select>
 
-    Cities: <select name="city" multiple style="width:150px;">
+    <select name="city" multiple style="position:relative;top:30px;width:100px;">
     {% for city in cities %}
         <option value="{{city.id}}">{{city.name}}</option>
     {% endfor %}
-    </select><br><br>
-    Companies: <select name="company" multiple style="width:150px;">
+    </select>
+    <select name="company" multiple style="position:relative;top:30px;width:100px;">
     {% for company in companies %}
         <option value="{{company.id}}">{{company.name}}</option>
     {% endfor %}
     </select>
-    <br><br>
-    posted date from: <input type="date" name="from_date"><br><br>
-    posted date to: <input type="date" name="to_date"> <br><br>
-    Search <input type="search" name="search" placeholder="Job title/company name"><br><br>
-    <input type="submit">
 
+    posted date from: <input type="date" name="from_date">
+        posted date to: <input type="date" name="to_date" >
+        Search <input type="search" name="search" placeholder="Job title/company name">
+        <input style="position:relative; left:30px; width:100px;" type="submit">
 </form>
 </div>
 
 {% if job_posts %}
-<div class="jobs table" style="position:absolute;width:1000px; height:1000px;top:110px;right:530px;">
+<div class="jobs table" style="position:absolute;width:95%; height:1000px;top:250px;right:90px;">
 
-    <table width="100%" border="solid" style="text-align:center;margin:50px 50px;">
+    <table width="100%" style="border: 2px solid black;text-align:center;margin:50px 50px;">
         <th>Title</th>
         <th>Company</th>
         <th>Company Logo</th>
         <th>Can be remote</th>
+        <th>Posted On</th>
         <th> View More</th>
         {% for job_post in job_posts %}
-            <tr>
-                <td>{{job_post.title}}</td>
+            <tr >
+                <td><strong>{{job_post.title}}</strong></td>
                 <td>{{job_post.company.name}}</td>
                 <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="50px" height="30px"></td>
-                <td>{{job_post.can_be_remote}}</td>
-                <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail">detail</a></td>
+                <td>{% if job_post.can_be_remote %} Yes {% else %} No {% endif %}</td>
+                <td>{{job_post.created_at}}</td>
+                <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail" style="text-decoration:none;">View Details</a></td>
             </tr>
         {% endfor %}
     </table>
 
 {% endif %}
-<div class="pagination" style="text-align:center;font-weight:bold;font-size:25px; top:500px; right:370px; position:absolute;">
+<div class="pagination" style="text-align:center;font-weight:bold;font-size:25px; top:460px; right:570px; position:absolute;">
     <span class="step-links">
         {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>

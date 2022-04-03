@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'api/base.html' %}
+
+{% block content %}
+
 <div class="sign_up_div">
     {% if message %}
         {{message}}
     {% endif %}
-    <form class="sign_up_form" method="post" action="{% url 'signup' %}"> {% csrf_token %}
-        <div>Email <input type="email" name="email" placeholder="email" required></div>
-        <div>First Name <input type="text" name="first_name" placeholder="First Name" required></div>
-        <div>Last Name <input type="text" name="last_name" placeholder="Last Name" required></div>
-        <div>Password<input type="password" name="password" placeholder="Password" required></div>
-        <div><button type="submit">Sign Up</button></div>
-        <div><button type="reset">Reset</button></div>
-    </form>
+    <div style="text-align:center; position:absolute;top:200px;right:600px;  background-color: coral;height:100px;padding-top:150px; width:400px;border-radius:25px;">>
 
-    <div class="login_link">
-    <a href="{% url 'signin' %}" >Sign In</a>
+        <form class="sign_up_form" method="post" action="{% url 'signup' %}"> {% csrf_token %}
+            <div style="padding-top:10px;position:relative;bottom:140px;">Email <input type="email" name="email" placeholder="email" required></div>
+            <div style="padding-top:10px;position:relative;bottom:130px;">First Name <input type="text" name="first_name" placeholder="First Name" required></div>
+            <div style="padding-top:10px;position:relative;bottom:120px;">Last Name <input type="text" name="last_name" placeholder="Last Name" required></div>
+            <div style="padding-top:10px;position:relative;bottom:110px;">Password<input type="password" name="password" placeholder="Password" required></div>
+
+            <div style="padding-top:5px;position:relative;bottom:90px;">
+                    <button style="width:90px; border-radius:20px;" type="submit">Sign Up</button>&nbsp;&nbsp;&nbsp;
+                    <button style="width:90px; border-radius:20px;" type="reset">Reset</button>
+                </div>
+         </form>
+
     </div>
 
 </div>
-</body>
-</html>
+{% endblock %}
