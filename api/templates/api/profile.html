@@ -2,46 +2,54 @@
 {% load static %}
 
 {% block content %}
-    <h3 align="center">Profile</h3>
-    <div class="user_profile" align="center">
-        <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %}
-            First Name  <input type="text" name="first_name" value="{{user.first_name}}"><br>
-            Last Name  <input type="text" name="last_name" value="{{user.last_name}}"><br>
-            Mobile:<input type="number" name="mobile_number" minlength="10" maxlength="10" value="{{user.mobile_number}}"><br>
-            Resume:<input type="file" name="resume" accept=".pdf,.doc">
+<div>
+                 <br> <br><h1 align="center" > {% if user.first_name %} {{user.first_name}}'s {% endif %} Profile</h1>
+
+    <div class="user_profile" align="center" style="position:relative;top:30px;font-size:20px; text-align:left;left:450px; width:600px;background-color:pink;
+    padding-left:70px;padding-top:45px;padding-bottom:30px;height:500px;" >
+        <form method="POST" action="" enctype="multipart/form-data" > {% csrf_token %}
+            <label style="font-weight:bold;">First Name</label>  <input type="text" name="first_name" value="{{user.first_name}}"><br><br>
+            <label style="font-weight:bold;"> Last Name </label>  <input type="text" name="last_name" value="{{user.last_name}}"><br><br>
+            <label style="font-weight:bold;"> Mobile: </label><input type="number" name="mobile_number" minlength="10" maxlength="10" value="{{user.mobile_number}}"><br><br>
+            <label style="font-weight:bold;">Resume: </label><input type="file" name="resume" accept=".pdf,.doc">
             {% if user.resume %}
-            <a href="{{user.resume.url}}" target="_blank">View Resume</a>
+            <a href="{{user.resume.url}}" target="_blank" style="text-decoration:none;position:relative;top:100px;left:40px;">Click To View Resume</a>
             {% else %}
-                <img src="/media/blank_resume.PNG" height="50px" width="50px"/>
-            {% endif %}
-            <br>
+            <p style="text-decoration:none;position:relative;top:150px;left:50px;">No Resume Added</p>
 
-            Profile Pic:<input type="file" name="profile_picture" accept=".png,.jpeg,.jpg" >
+            {% endif %}
+            <br><br>
+
+            <label style="font-weight:bold;position:relative;bottom:180px;"> Profile Pic: </label><input style="position:relative;bottom:180px;" type="file" name="profile_picture" accept=".png,.jpeg,.jpg" >
             {% if user.profile_picture %}
-                <img src="{{user.profile_picture.url}}" height="50px" width="50px"/>
+                <img src="{{user.profile_picture.url}}" height="200px" width="200px" style="position:relative;bottom:200px; border-radius:50px;"/>
             {% else %}
-                <img src="/media/blank_profile.PNG" height="50px" width="50px"/>
+                <img src="/media/blank_profile.PNG" height="200px" width="200px" style="position:relative;bottom:200px; border-radius:50px;"/>
             {% endif %}
-            <br>
+            <br><br>
 
-            can work remotely :
-            <input type="radio" name="can_work_remotely" value="true" {% if user.can_work_remotely  %} checked="checked" {% endif %}> Yes
-            <input type="radio" name="can_work_remotely" value="false" {% if not user.can_work_remotely  %} checked="checked" {% endif %}> No <br>
+            <label style="font-weight:bold;position:relative;bottom:180px;"> Can Work Remotely : </label>
+            <input style="position:relative;bottom:180px;" type="radio" name="can_work_remotely" value="true" {% if user.can_work_remotely  %} checked="checked" {% endif %}>
+            <label style="position:relative;bottom:180px;">Yes</label>
+            <input style="position:relative;bottom:180px;" type="radio" name="can_work_remotely" value="false" {% if not user.can_work_remotely  %} checked="checked" {% endif %}>
+            <label style="position:relative;bottom:180px;"> No </label> <br>
 
-            preferred_locations:
-            <select multiple name="location">
+            <label style="font-weight:bold;position:relative;bottom:170px;"> Preferred Locations: </label>
+            <select multiple name="location" style="position:relative;top:-120px; left:10px;">
                 {% for city in cities %}
                     <option value="{{city.id}}" {% if city.is_added %} selected {% endif %} >{{city.name}} </option>
                 {% endfor %}
-            </select>
+            </select><br><br>
 
-            preferred skills:
-            <select multiple name="skill">
+
+            <label style="font-weight:bold;position:relative; left:320px; bottom:270px;"> Preferred Skills: </label>
+            <select multiple name="skill" style="position:relative;bottom:220px;left:330px;">
                 {% for skill in skills %}
                     <option value="{{skill.id}}" {% if skill.is_added %} selected {% endif %} >{{skill.name}}</option>
                 {% endfor %}
-            </select>
-        <input type="submit" name="update" value="update">
+            </select> <br><br>
+        <input style="position:relative;bottom:195px;left:200px;width:120px;height:70px;border-radius:20px;font-size:18px;font-weight:bold;"  type="submit" name="update" value="Update">
         </form>
     </div>
+</div>
 {% endblock %}
