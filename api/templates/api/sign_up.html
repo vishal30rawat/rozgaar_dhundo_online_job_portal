@@ -6,7 +6,7 @@
     {% if message %}
         {{message}}
     {% endif %}
-    <div style="text-align:center; position:absolute;top:200px;right:600px;  background-color: coral;height:100px;padding-top:150px; width:400px;border-radius:25px;">>
+    <div style="text-align:center; position:absolute;top:200px;right:600px;  background-color: pink;height:100px;padding-top:150px; width:400px;border-radius:25px;">>
 
         <form class="sign_up_form" method="post" action="{% url 'signup' %}"> {% csrf_token %}
             <div style="padding-top:10px;position:relative;bottom:140px;">Email <input type="email" name="email" placeholder="email" required></div>
