@@ -9,17 +9,19 @@
 
 
 <div class="common_header" style="position:absolute;top:20px;right:100px;">
-        <a href="{% url 'home_page' %}" style="text-decoration:none;">Home</a>&nbsp;
+        <a href="{% url 'home_page' %}" style="position:relative;right:1200px; bottom:10px;text-decoration:none;"><img src="/media/logo1.png" height="70px" width="150px"></a>
 
-    {% if user %}
+            {% if user %}
 
-            <a style="width:15px;text-decoration:none;" href="{% url 'joblist' %}" >Jobs</a> &nbsp;
+            <a href="{% url 'home_page' %}" style="text-decoration:none;position:absolute;right:250px;">Home</a>&nbsp;
 
-            <a style="text-decoration:none;" href="{% url 'applicationlist' %}" >Applied</a>&nbsp;
+            <a style="width:15px;text-decoration:none;position:absolute;right:220px;" href="{% url 'joblist' %}" >Jobs</a> &nbsp;
 
-            <a style="text-decoration:none;" href="{% url 'savelist' %}" >Saved</a>&nbsp;
+            <a style="text-decoration:none;position:absolute;right:147px;" href="{% url 'applicationlist' %}" >Applied</a>&nbsp;
 
-            <a style="text-decoration:none;" href="{% url 'logout' %}" >Log Out</a>&nbsp; &nbsp;
+            <a style="text-decoration:none;position:absolute;right:100px;" href="{% url 'savelist' %}" >Saved</a>&nbsp;
+
+            <a style="text-decoration:none;position:absolute;right:30px;" href="{% url 'logout' %}" >Log Out</a>&nbsp; &nbsp;
 
             <a href="{% url 'profile' %}" style="position:absolute;top:-10px;text-decoration:none;" >
                 {% if user.profile_picture %}
@@ -30,8 +32,9 @@
             </a>
 
     {% else %}
-                <a style="text-decoration:none;" href="{% url 'signin' %}" >Sign In</a> &nbsp;
-                <a style="text-decoration:none;" href="{% url 'signup' %}" >Sign Up</a> &nbsp;
+                <a href="{% url 'home_page' %}" style="text-decoration:none;position:absolute;right:110px;">Home</a>&nbsp;
+                <a style="text-decoration:none;position:absolute;right:50px;" href="{% url 'signin' %}" >Sign In</a> &nbsp;
+                <a style="text-decoration:none;position:absolute;right:-10px;" href="{% url 'signup' %}" >Sign Up</a> &nbsp;
 
     {% endif %}
 </div>
@@ -40,7 +43,7 @@
 {% block content %}
 {% endblock %}
 
-<!--<div class="common_footer" style="background-color: red;position: fixed;left: 0;bottom: 0;width: 100%;color: white;text-align: center;">Footer</div>-->
+<!--<img src="/media/homepage.jpg" alt="homepage" width="170" height="100">-->
 
 </body>
 </html>

@@ -208,7 +208,10 @@ class JobPostDetailView(LoginRequiredMixin, DetailView):
         user = self.request.user
         if not self.request.user.is_authenticated:
             user = None
-        context_data.update({'user': user})
+        context_data.update({'user': user,
+                             'skills': list(context_data['object'].skills.all().values_list('name', flat=True)),
+                             'cities': list(context_data['object'].cities.all().values_list('name', flat=True)),
+                             })
         return context_data
 
 

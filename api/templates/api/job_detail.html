@@ -1,47 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div class="job_detail">
-    {{job_post.title}}<br>
-    {{job_post.company.name}}<br>
-    <img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" height="20px" width="40px"><br>
-    {{job_post.description}}<br>
+{% extends 'api/base.html' %}
+{% load static %}
 
+{% block content %}
+
+    <div class="job_detail" style="position:absolute; top:50px;">
+    <h2 align="center">{{job_post.title}}</h2>
+    <img align="center"  style="display: block;margin-left: auto;margin-right: auto;" src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" height="120px" width="220px">
+    <p align="center" style="font-size:20px;"> {{job_post.description}}</p>
+
+
+
+        <div>
+        <p style="position:relative;font-weight:bold;font-size:20px; left:300px;">Payroll Method: {% if job_post.payroll_method == 'H' %} Hourly
+        {% elif job_post.payroll_method == 'W' %} Weekly
+        {% elif job_post.payroll_method == 'M' %} Monthly
+        {% elif job_post.payroll_method == 'A' %} Annually
+            {% endif %}</p>
+        <p style="position:relative;font-weight:bold;font-size:20px;left:600px;bottom:42px;"> Pay range from: {{job_post.pay_range_from}} </p>
+        <p style="position:relative;font-weight:bold;font-size:20px;left:900px;bottom:82px;"> Pay range To: {{job_post.pay_range_to}} </p>
+            <p style="position:relative;font-weight:bold;font-size:18px;bottom:380px; float:left;margin-left:50px;" > Location(s) :
+                {% if cities %}
+                    {% for city in cities %}
+                        {{city}} {% if job_post.can_be_remote %} (Can be Remote) {% else %} (On-Site) {% endif %} ,
+                    {% endfor %}
+                {% else %}
+                    {% if job_post.can_be_remote %} (Can be Remote) {% else %} (On-Site) {% endif %}
+                {% endif %}
+                 </p>
+            <p style="position:relative;font-weight:bold;font-size:17px; bottom:380px; float:right; margin-right:50px;" > Skill(s) :
+                {% if skills %}
+                    {% for skill in skills %}
+                        {{skill}} ,
+                    {% endfor %}
+                {% endif %}
+
+            </p>
+        </div>
+
+
+<div style="position:absolute; left:450px; ">
     {% if job_post.is_applied %}
         <form method="POST" action="{% url 'applicationlist' %}"> {% csrf_token %}
                     Already Applied
         <input type="text" name="job_post" value="{{job_post.id}}" hidden>
         <input type="text" name="is_applying" value="False" hidden>
-        <input type="submit" value="Un-Apply Now" >
+        <input type="submit" value="Un-Apply Now" style="width:130px;text-align:center;border-radius:10px;">
         </form>
     {% else %}
 
         <form method="POST" action="{% url 'applicationlist' %}"> {% csrf_token %}
         <input type="text" name="is_applying" value="True" hidden>
         <input type="text" name="job_post" value="{{job_post.id}}" hidden>
-        <input type="submit" value="Apply Now" >
+        <input type="submit" value="Apply Now" style="width:130px;text-align:center;border-radius:10px;" >
         </form>
 
     {% endif %}
+</div>
+
+<div style="position:absolute;float:right;left:850px; ">
 
     {% if job_post.is_saved %}
         <form method="POST" action="{% url 'savelist' %}"> {% csrf_token %}
                         Already Saved
             <input type="text" name="job_post" value="{{job_post.id}}" hidden>
             <input type="text" name="is_saving" value="False" hidden>
-            <input type="submit" value="Un-Save Now" >
+            <input type="submit" value="Un-Save Now" style="width:130px;text-align:center;border-radius:10px;">
         </form>
     {% else %}
         <form method="POST" action="{% url 'savelist' %}"> {% csrf_token %}
             <input type="text" name="is_saving" value="True" hidden>
             <input type="text" name="job_post" value="{{job_post.id}}" hidden>
-            <input type="submit" value="Save For Now" >
+            <input type="submit" value="Save For Now" style="width:130px;text-align:center;border-radius:10px;">
         </form>
     {% endif %}
 </div>
-</body>
-</html>
+</div>
+    {% endblock %}
