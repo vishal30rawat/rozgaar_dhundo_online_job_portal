@@ -3,9 +3,11 @@
 
 {% block content %}
 
-<h1 style="text-align:center;"> Applied Jobs</h1>
 
-<div class="search_job" style="position: absolute;top: 85px; right:50px; background:pink; width:1410px; padding: 20px 10px;height:170px;">
+<h1 align="center" style="background-color: #e91e63;padding: 14px;">Applied Jobs </h1>
+
+
+<div class="search_job" style="position: absolute;top: 100px; right:50px; background:#3c3696;color:white; width:1410px; padding: 20px 10px;height:170px;">
 
  <h2 style="text-align:center;">Search & Filter Jobs</h2>
 <form class="search_job" method="GET" action="">
@@ -37,24 +39,24 @@
     applied date from: <input type="date" name="from_date">
     applied date to: <input type="date" name="to_date">
     <input type="search" name="search" placeholder="Job title/company name">
-    <input type="submit">
+    <input type="submit" style="text-decoration:none;position:absolute;right:10px;background: #e91e63;color: black;padding: 10px;border-radius: 6px;top: 130px;font-weight:bold;">
 </form>
 </div>
 
 {% if job_posts %}
-<div class="jobs table" style="position:absolute;width:95%; height:1000px;top:240px;right:90px;">>
+<div class="jobs table" style="position:absolute;width:95%; height:1000px;top:270px;right:90px;">
 <table width="100%" style="border: 2px solid black;text-align:center;margin:50px 50px;">
-    <th>Applied on</th>
-    <th>status</th>
-    <th>Title</th>
-    <th>Company</th>
-    <th>Company Logo</th>
-    <th>Can be remote</th>
-    <th> View More</th>
+    <th style="border-bottom: 1px solid black;padding: 15px;">Applied on</th>
+    <th style="border-bottom: 1px solid black;padding: 15px;">status</th>
+    <th style="border-bottom: 1px solid black;padding: 15px;">Title</th>
+    <th style="border-bottom: 1px solid black;padding: 15px;">Company</th>
+    <th style="border-bottom: 1px solid black;padding: 15px;">Company Logo</th>
+    <th style="border-bottom: 1px solid black;padding: 15px;">Can be remote</th>
+    <th style="border-bottom: 1px solid black;padding: 15px;"> View More</th>
     {% for job_post in job_posts %}
         <tr>
-            <td>{{job_post.applied_on}}</td>
-            <td><strong> {% if job_post.applied_status == 'APP' %}
+            <td style="border-bottom: 1px solid #00000094; padding: 15px;">{{job_post.applied_on}}</td>
+            <td style="border-bottom: 1px solid #00000094; padding: 15px;"><strong> {% if job_post.applied_status == 'APP' %}
                     Candidate Applied
                 {% elif job_post.applied_status == 'DEC' %}
                     Company Declined
@@ -63,17 +65,19 @@
                 {% endif %}
             </strong>
             </td>
-            <td><strong>{{job_post.title}}</strong></td>
-            <td>{{job_post.company.name}}</td>
-            <td><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="50px" height="30px"></td>
-            <td>{% if job_post.can_be_remote %} Yes {% else %} No {% endif %}</td>
+            <td style="border-bottom: 1px solid #00000094; padding: 15px;"><strong>{{job_post.title}}</strong></td>
+            <td style="border-bottom: 1px solid #00000094; padding: 15px;">{{job_post.company.name}}</td>
+            <td style="border-bottom: 1px solid #00000094; padding: 15px;"><img src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" width="50px" height="30px"></td>
+            <td style="border-bottom: 1px solid #00000094; padding: 15px;">{% if job_post.can_be_remote %} Yes {% else %} No {% endif %}</td>
+            <td style="border-bottom: 1px solid #00000094; padding: 15px;">
+                <a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail" style="text-decoration:none;background: #25215d;color: white;padding: 8px;border-radius: 6px;">View Details</a>
+            </td>
 
-            <td><a href="/jobdetail/{{ job_post.id }}/" target="_blank" class="see_detail" style="text-decoration:none;">View Details</a></td>
         </tr>
     {% endfor %}
 </table>
 {% endif %}
-<div class="pagination" style="text-align:center;font-weight:bold;font-size:25px; top:480px; right:570px; position:absolute;">
+<div class="pagination" style="text-align:center;font-weight:bold;font-size:25px; top:450px; right:600px; position:absolute;">
     <span class="step-links">
         {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>

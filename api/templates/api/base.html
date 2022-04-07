@@ -3,47 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Rozgaar Dhundo: Jobs</title>
+    <link rel = "icon" href ="/media/logo1.png" type = "image/x-icon">
 </head>
 
-<body bgcolor="#99ffbb">
+<body style="background-color:#9e9e9e61;">
 
+<div class="common_header" style="position:absolute;top: 44px;right:100px;/* top: 50%; *//* left: 50%; *//* transform: translate(-50%, -50%); */">
+        <a href="{% url 'home_page' %}" style="position:relative;right:1000px;bottom: 25px;text-decoration:none;"><img src="/media/logo1.png" height="70px" width="150px"></a>
 
-<div class="common_header" style="position:absolute;top:20px;right:100px;">
-        <a href="{% url 'home_page' %}" style="position:relative;right:1000px; bottom:10px;text-decoration:none;"><img src="/media/logo1.png" height="70px" width="150px"></a>
+        {% if user %}
+                <a href="{% url 'home_page' %}" style="text-decoration:none;position:absolute;right:300px;background: #25215d;color: white;padding: 10px;border-radius: 6px;top: -10px;">Home</a>&nbsp;
+                <a style="text-decoration:none;position:absolute;right: 235px;background: #25215d;color: white;padding: 10px;border-radius: 6px;top: -10px;" href="{% url 'joblist' %}">Jobs</a>
+                <a style="text-decoration:none;position:absolute;right: 150px;background: #25215d;color: white;padding: 10px;border-radius: 6px;top: -10px;" href="{% url 'applicationlist' %}">Applied</a>
+                <a style="text-decoration:none;position:absolute;right: 80px;background: #25215d;color: white;padding: 10px;border-radius: 6px;top: -10px;" href="{% url 'savelist' %}">Saved</a>
+                <a style="text-decoration:none;position:absolute;right: 2px;background: #25215d;color: white;padding: 10px;border-radius: 6px;top: -10px;" href="{% url 'logout' %}">Logout</a>
 
-            {% if user %}
-
-            <a href="{% url 'home_page' %}" style="text-decoration:none;position:absolute;right:250px;">Home</a>&nbsp;
-
-            <a style="width:15px;text-decoration:none;position:absolute;right:220px;" href="{% url 'joblist' %}" >Jobs</a> &nbsp;
-
-            <a style="text-decoration:none;position:absolute;right:147px;" href="{% url 'applicationlist' %}" >Applied</a>&nbsp;
-
-            <a style="text-decoration:none;position:absolute;right:100px;" href="{% url 'savelist' %}" >Saved</a>&nbsp;
-
-            <a style="text-decoration:none;position:absolute;right:30px;" href="{% url 'logout' %}" >Log Out</a>&nbsp; &nbsp;
-
-            <a href="{% url 'profile' %}" style="position:absolute;top:-10px;text-decoration:none;" >
+                   <a href="{% url 'profile' %}" style="position:absolute;top:-14px;text-decoration:none;right:-60px;" >
                 {% if user.profile_picture %}
-                    <img style="border-radius: 35px;" src="{{user.profile_picture.url}}" height="35px" width="35px"/>
+                    <img style="border-radius: 35px;" src="{{user.profile_picture.url}}" height="45px" width="45px"/>
                 {% else %}
-                    <img style="border-radius: 35px;" src="/media/blank_profile.PNG" height="35px" width="35px"/>
+                    <img style="border-radius: 35px;" src="/media/blank_profile.PNG" height="45px" width="45px"/>
                 {% endif %}
-            </a>
+                   </a>
+
 
     {% else %}
-                <a href="{% url 'home_page' %}" style="text-decoration:none;position:absolute;right:110px;">Home</a>&nbsp;
-                <a style="text-decoration:none;position:absolute;right:50px;" href="{% url 'signin' %}" >Sign In</a> &nbsp;
-                <a style="text-decoration:none;position:absolute;right:-10px;" href="{% url 'signup' %}" >Sign Up</a> &nbsp;
+                <a href="{% url 'home_page' %}" style="text-decoration:none;position:absolute;right:110px;background: #25215d;color: white;padding: 10px;border-radius: 6px;top: -10px;">Home</a>&nbsp;
+                <a style="text-decoration:none;position:absolute;right: 23px;background: #25215d;color: white;padding: 10px;border-radius: 6px;top: -10px;" href="/signin/">Sign In</a>
+                <a style="text-decoration:none;position:absolute;right: -66px;background: #25215d;color: white;padding: 10px;border-radius: 6px;top: -10px;" href="/signup/">Sign Up</a>
 
-    {% endif %}
+        {% endif %}
+
 </div>
-<!--header ends here-->
 
 {% block content %}
 {% endblock %}
 
-<!--<img src="/media/homepage.jpg" alt="homepage" width="170" height="100">-->
 
 </body>
 </html>

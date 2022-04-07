@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block content %}
+    <h1 align="center" style="background-color: #e91e63;padding: 14px;"> Job Detail </h1>
 
-    <div class="job_detail" style="position:absolute; top:50px;">
+    <div class="job_detail" style="position:absolute; top:90px;">
     <h2 align="center">{{job_post.title}}</h2>
     <img align="center"  style="display: block;margin-left: auto;margin-right: auto;" src="{{job_post.company.logo.url}}" alt="{{job_post.company.name}}" height="120px" width="220px">
     <p align="center" style="font-size:20px;"> {{job_post.description}}</p>
@@ -41,17 +42,18 @@
 <div style="position:absolute; left:450px; ">
     {% if job_post.is_applied %}
         <form method="POST" action="{% url 'applicationlist' %}"> {% csrf_token %}
-                    Already Applied
         <input type="text" name="job_post" value="{{job_post.id}}" hidden>
         <input type="text" name="is_applying" value="False" hidden>
-        <input type="submit" value="Un-Apply Now" style="width:130px;text-align:center;border-radius:10px;">
+         <input type="submit" value="Un-Apply Now   (Already Applied) " style="width:270px;border-radius:20px;padding: 10px 20px;margin-top: -19px;background-color: #e91e63;color: black;border: none;outline: none;font-weight: bold;">
+
         </form>
     {% else %}
 
         <form method="POST" action="{% url 'applicationlist' %}"> {% csrf_token %}
         <input type="text" name="is_applying" value="True" hidden>
         <input type="text" name="job_post" value="{{job_post.id}}" hidden>
-        <input type="submit" value="Apply Now" style="width:130px;text-align:center;border-radius:10px;" >
+         <input type="submit" value="Apply Now" style="width:130px;border-radius:20px;padding: 10px 20px;margin-top: -19px;background-color: #25215d;color: white;border: none;outline: none;font-weight: bold;">
+
         </form>
 
     {% endif %}
@@ -61,16 +63,18 @@
 
     {% if job_post.is_saved %}
         <form method="POST" action="{% url 'savelist' %}"> {% csrf_token %}
-                        Already Saved
+
             <input type="text" name="job_post" value="{{job_post.id}}" hidden>
             <input type="text" name="is_saving" value="False" hidden>
-            <input type="submit" value="Un-Save Now" style="width:130px;text-align:center;border-radius:10px;">
+            <input type="submit" value="Un-Save Now   (Already Saved)" style="width:270px;border-radius:20px;padding: 10px 20px;margin-top: -19px;background-color:#e91e63;color:black;border: none;outline: none;font-weight: bold;">
+
         </form>
     {% else %}
         <form method="POST" action="{% url 'savelist' %}"> {% csrf_token %}
             <input type="text" name="is_saving" value="True" hidden>
             <input type="text" name="job_post" value="{{job_post.id}}" hidden>
-            <input type="submit" value="Save For Now" style="width:130px;text-align:center;border-radius:10px;">
+            <input type="submit" value="Save Now" style="width:130px;border-radius:20px;padding: 10px 20px;margin-top: -19px;background-color: #25215d;color: white;border: none;outline: none;font-weight: bold;">
+
         </form>
     {% endif %}
 </div>

@@ -28,6 +28,7 @@ class CompanyAdmin(admin.ModelAdmin):
     list_display = ('name', 'get_logo', 'email', 'mobile_number',
                     'get_total_jobs_posted', 'get_total_active_jobs')
     search_fields = ['name', ]
+    readonly_fields = ['get_logo', ]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -70,8 +71,8 @@ class JobApplicationAdmin(admin.ModelAdmin):
     search_fields = ['applicant__first_name', 'applicant__last_name', 'job_post__title', 'job_post__company__name']
     list_filter = ['created_at', 'status', 'job_post__company']
 
-    # def has_add_permission(self, request):
-    #     return False
+    def has_add_permission(self, request):
+        return False
 
 
 @admin.register(CustomUser)

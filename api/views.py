@@ -140,7 +140,7 @@ class JobPostListView(LoginRequiredMixin, ListView):
     login_url = '/signin/'
     template_name = 'api/job_list.html'
     model = JobPost
-    paginate_by = 10
+    paginate_by = 5
     context_object_name = 'job_posts'
     queryset = JobPost.objects.all()
     extra_context = {
@@ -219,7 +219,7 @@ class JobApplicationListView(LoginRequiredMixin, ListView):
     login_url = '/signin/'
     template_name = 'api/application_list.html'
     model = JobPost
-    paginate_by = 10
+    paginate_by = 5
     context_object_name = 'job_posts'
     queryset = JobPost.objects.all()
     extra_context = {
@@ -293,7 +293,7 @@ class JobSaveListView(LoginRequiredMixin, ListView):
     login_url = '/signin/'
     template_name = 'api/save_list.html'
     model = JobPost
-    paginate_by = 10
+    paginate_by = 5
     context_object_name = 'job_posts'
     queryset = JobPost.objects.all()
     extra_context = {
